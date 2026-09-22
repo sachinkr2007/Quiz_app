@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepMaster | Final Year Campus Placement & Interview Portal</title>
+    <meta name="description" content="Professional interview and placement preparation quiz portal for final year students. Real questions from TCS, Infosys, Amazon, Accenture, Wipro with step-by-step solutions.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- HEADER / NAVIGATION -->
+        <header class="app-header">
+            <div class="header-container">
+                <div class="logo-area" id="homeLogoBtn" role="button" tabindex="0">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="brand-name">PrepMaster</span>
+                        <span class="brand-badge">Placement Portal</span>
+                    </div>
+                </div>
+
+                <div class="header-center-info" id="quizHeaderInfo" style="display: none;">
+                    <div class="active-category-pill" id="activeCategoryBadge">
+                        <i class="fa-solid fa-layer-group"></i> <span>Domain</span>
+                    </div>
+                    <div class="timer-badge" id="quizTimer">
+                        <i class="fa-regular fa-clock"></i> <span id="timerDisplay">10:00</span>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <button class="icon-btn" id="soundToggleBtn" title="Toggle Sound Effects" aria-label="Toggle Sound">
+                        <i class="fa-solid fa-volume-high" id="soundIcon"></i>
+                    </button>
+                    <button class="icon-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon" id="themeIcon"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm quit-quiz-btn" id="quitQuizBtn" style="display: none;">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Exit</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT CONTAINER -->
+        <main class="main-content">
+            <!-- ================= SCREEN 1: CATEGORY SELECTION & DASHBOARD ================= -->
+            <section class="screen-view active-view" id="homeScreen">
+                <div class="hero-section">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-sparkles"></i> 2026 Final Year Placement & Assessment Prep
+                    </div>
+                    <h1 class="hero-title">
+                        Crack Top Tech Placements & Interviews
+                    </h1>
+                    <p class="hero-subtitle">
+                        Practice authentic, real-world questions asked in <strong>TCS NQT, Infosys DSE, Amazon, Accenture, Wipro, Google</strong> & more. Randomized tests with instant detailed step-by-step solutions.
+                    </p>
+                    
+                    <!-- Quick Stats Banner -->
+                    <div class="hero-stats-row">
+                        <div class="hero-stat-pill">
+                            <i class="fa-solid fa-bolt"></i> <strong>60+</strong> Real Company Questions
+                        </div>
+                        <div class="hero-stat-pill">
+                            <i class="fa-solid fa-shuffle"></i> <strong>100%</strong> Dynamic Randomization
+                        </div>
+                        <div class="hero-stat-pill">
+                            <i class="fa-solid fa-award"></i> <strong>Instant</strong> Detailed Solutions
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Settings Bar -->
+                <div class="settings-card">
+                    <div class="setting-group">
+                        <label for="questionCountSelect"><i class="fa-solid fa-list-ol"></i> Number of Questions:</label>
+                        <div class="pill-selector" id="questionCountSelector">
+                            <button class="pill-opt" data-value="5">5 Qs</button>
+                            <button class="pill-opt active" data-value="10">10 Qs</button>
+                            <button class="pill-opt" data-value="15">15 Qs</button>
+                            <button class="pill-opt" data-value="20">All Qs</button>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label><i class="fa-solid fa-stopwatch"></i> Test Mode:</label>
+                        <div class="pill-selector" id="testModeSelector">
+                            <button class="pill-opt active" data-mode="timed">
+                                <i class="fa-solid fa-clock"></i> Timed Exam (60s/Q)
+                            </button>
+                            <button class="pill-opt" data-mode="practice">
+                                <i class="fa-solid fa-book-open"></i> Practice (Untimed)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domain Category Grid -->
+                <div class="section-heading">
+                    <h2><i class="fa-solid fa-compass"></i> Select Target Preparation Domain</h2>
+                    <p>Choose a specific topic or attempt the full placement mock test</p>
+                </div>
+
+                <div class="domain-grid">
+                    <!-- 1. Full Mock Test (Featured) -->
+                    <div class="domain-card featured-card" data-domain="all" tabindex="0">
+                        <div class="domain-card-badge">RECOMMENDED</div>
+                        <div class="domain-icon-box grad-mock">
+                            <i class="fa-solid fa-rocket"></i>
+                        </div>
+                        <div class="domain-card-content">
+                            <h3>Full Placement Mock Test</h3>
+                            <p>Mixed exam simulating TCS NQT, Infosys, and AMCAT aptitude & technical assessment rounds.</p>
+                            <div class="domain-meta">
+                                <span><i class="fa-solid fa-layer-group"></i> All 6 Domains</span>
+                                <span><i class="fa-solid fa-building"></i> Multi-Company</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary start-domain-btn">
+                            Start Mock Test <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 2. Quantitative Aptitude -->
+                    <div class="domain-card" data-domain="aptitude" tabindex="0">
+                        <div class="domain-icon-box grad-apt">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div class="domain-card-content">
+                            <h3>Quantitative Aptitude</h3>
+                            <p>Time & Work, Speed-Distance, Profit & Loss, P&C, Probability, Ratios & Percentages.</p>
+                            <div class="domain-meta">
+                                <span><i class="fa-solid fa-building"></i> TCS, Infosys, Wipro</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline start-domain-btn">
+                            Practice Aptitude <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 3. Logical Reasoning -->
+                    <div class="domain-card" data-domain="reasoning" tabindex="0">
+                        <div class="domain-icon-box grad-reas">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <div class="domain-card-content">
+                            <h3>Logical Reasoning</h3>
+                            <p>Coding-Decoding, Blood Relations, Syllogisms, Number Series, Seating Arrangements.</p>
+                            <div class="domain-meta">
+                                <span><i class="fa-solid fa-building"></i> Accenture, Capgemini</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline start-domain-btn">
+                            Practice Reasoning <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 4. Verbal Ability & English -->
+                    <div class="domain-card" data-domain="verbal" tabindex="0">
+                        <div class="domain-icon-box grad-verb">
+                            <i class="fa-solid fa-spell-check"></i>
+                        </div>
+                        <div class="domain-card-content">
+                            <h3>Verbal Ability & English</h3>
+                            <p>Sentence Correction, Spotting Errors, Synonyms & Antonyms, Idioms, Grammar rules.</p>
+                            <div class="domain-meta">
+                                <span><i class="fa-solid fa-building"></i> TCS, Cognizant, Deloitte</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline start-domain-btn">
+                            Practice Verbal <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 5. Data Structures & Algorithms -->
+                    <div class="domain-card" data-domain="dsa" tabindex="0">
+                        <div class="domain-icon-box grad-dsa">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div class="domain-card-content">
+                            <h3>Data Structures & Algorithms</h3>
+                            <p>Time Complexities, Binary Trees, Stacks, Linked Lists, Graphs, DP, Kadane's & Sorting.</p>
+                            <div class="domain-meta">
+                                <span><i class="fa-solid fa-building"></i> Amazon, Google, Microsoft</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline start-domain-btn">
+                            Practice DSA <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 6. Core Computer Science -->
+                    <div class="domain-card" data-domain="core_cs" tabindex="0">
+                        <div class="domain-icon-box grad-cs">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="domain-card-content">
+                            <h3>Core CS (OS, DBMS, CN, OOP)</h3>
+                            <p>Deadlocks, ACID Properties, SQL Normalization, OSI Layers, TCP/UDP, Polymorphism.</p>
+                            <div class="domain-meta">
+                                <span><i class="fa-solid fa-building"></i> Oracle, Cisco, Infosys DSE</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline start-domain-btn">
+                            Practice Core CS <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- 7. Web Dev & Programming -->
+                    <div class="domain-card" data-domain="web_dev" tabindex="0">
+                        <div class="domain-icon-box grad-web">
+                            <i class="fa-brands fa-js"></i>
+                        </div>
+                        <div class="domain-card-content">
+                            <h3>Web Dev & Modern Tech</h3>
+                            <p>JavaScript Event Loop, Closures, React Virtual DOM, HTTP/CORS, Modern Frontend.</p>
+                            <div class="domain-meta">
+                                <span><i class="fa-solid fa-building"></i> Product Tech & Startups</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline start-domain-btn">
+                            Practice Web Dev <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SCREEN 2: ACTIVE QUIZ VIEW ================= -->
+            <section class="screen-view" id="quizScreen">
+                <div class="quiz-container">
+                    <!-- Quiz Top Meta Row -->
+                    <div class="quiz-meta-bar">
+                        <div class="meta-left">
+                            <span class="question-tracker-pill" id="questionTracker">
+                                Question <strong id="currentQNum">1</strong> of <span id="totalQNum">10</span>
+                            </span>
+                            <span class="company-tag" id="companyTagBadge">
+                                <i class="fa-solid fa-building"></i> TCS NQT
+                            </span>
+                            <span class="difficulty-tag" id="difficultyTagBadge">
+                                Medium
+                            </span>
+                        </div>
+
+                        <div class="meta-right">
+                            <button class="lifeline-btn" id="lifelineBtn" title="50-50: Eliminate 2 wrong options">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> <span>50:50 Lifeline</span>
+                            </button>
+                            <button class="flag-btn" id="flagQuestionBtn" title="Mark for review">
+                                <i class="fa-regular fa-bookmark" id="flagIcon"></i> <span>Mark</span>
+                            </button>
+                            <button class="palette-toggle-btn" id="paletteToggleBtn" title="View Question Matrix">
+                                <i class="fa-solid fa-table-cells"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar-fill" id="progressBarFill" style="width: 10%;"></div>
+                    </div>
+
+                    <!-- Main Question Card -->
+                    <div class="question-card" id="questionCard">
+                        <div class="question-topic-badge" id="questionTopic">Topic</div>
+                        <h2 class="question-title" id="questionText">
+                            Question text will appear here...
+                        </h2>
+
+                        <!-- Code Snippet Area (Dynamic) -->
+                        <div class="code-snippet-box" id="codeSnippetArea" style="display: none;">
+                            <div class="code-header">
+                                <span><i class="fa-solid fa-code"></i> Code Snippet</span>
+                                <button class="copy-code-btn" id="copyCodeBtn" title="Copy code"><i class="fa-regular fa-copy"></i></button>
+                            </div>
+                            <pre><code id="codeSnippetContent"></code></pre>
+                        </div>
+
+                        <!-- Option Cards List -->
+                        <div class="options-list" id="optionsContainer">
+                            <!-- Injected dynamically -->
+                        </div>
+
+                        <!-- Instant Feedback Explanation Box (if practice mode) -->
+                        <div class="instant-feedback-box" id="instantFeedbackBox" style="display: none;">
+                            <div class="feedback-header">
+                                <span id="feedbackResultBadge"><i class="fa-solid fa-check"></i> Correct!</span>
+                            </div>
+                            <div class="feedback-body" id="feedbackExplanationText">
+                                Explanation here...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Navigation & Action Toolbar -->
+                    <div class="quiz-footer-actions">
+                        <button class="btn btn-outline" id="prevBtn" disabled>
+                            <i class="fa-solid fa-arrow-left"></i> Previous
+                        </button>
+
+                        <div class="middle-status-indicator" id="questionStatusIndicator">
+                            <span class="status-dot"></span> <span id="statusText">Select an option</span>
+                        </div>
+
+                        <button class="btn btn-primary" id="nextBtn">
+                            Next <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button class="btn btn-success" id="submitQuizBtn" style="display: none;">
+                            Submit Test <i class="fa-solid fa-check-double"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SCREEN 3: RESULT & SCORECARD VIEW ================= -->
+            <section class="screen-view" id="resultScreen">
+                <div class="result-container">
+                    <div class="result-hero-card">
+                        <div class="result-badge-top" id="resultReadinessBadge">
+                            <i class="fa-solid fa-trophy"></i> Placement Ready!
+                        </div>
+
+                        <div class="score-circle-wrapper">
+                            <div class="score-circle" id="scoreCircle">
+                                <svg viewBox="0 0 100 100" class="circle-svg">
+                                    <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                                    <circle class="circle-progress" id="scoreCircleProgress" cx="50" cy="50" r="45"></circle>
+                                </svg>
+                                <div class="score-circle-content">
+                                    <span class="score-big" id="finalScoreText">8/10</span>
+                                    <span class="score-percent" id="finalPercentText">80%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="result-headline" id="resultHeadline">Outstanding Performance!</h2>
+                        <p class="result-subtext" id="resultSubtext">
+                            You demonstrated strong analytical and technical aptitude suitable for top-tier tech placements.
+                        </p>
+
+                        <!-- Score Stats Grid -->
+                        <div class="result-stats-grid">
+                            <div class="result-stat-box stat-correct">
+                                <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                <div class="stat-value" id="statCorrectCount">8</div>
+                                <div class="stat-label">Correct</div>
+                            </div>
+                            <div class="result-stat-box stat-wrong">
+                                <div class="stat-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                                <div class="stat-value" id="statWrongCount">2</div>
+                                <div class="stat-label">Incorrect</div>
+                            </div>
+                            <div class="result-stat-box stat-skipped">
+                                <div class="stat-icon"><i class="fa-solid fa-circle-minus"></i></div>
+                                <div class="stat-value" id="statSkippedCount">0</div>
+                                <div class="stat-label">Skipped</div>
+                            </div>
+                            <div class="result-stat-box stat-time">
+                                <div class="stat-icon"><i class="fa-regular fa-clock"></i></div>
+                                <div class="stat-value" id="statTimeSpent">04:25</div>
+                                <div class="stat-label">Time Taken</div>
+                            </div>
+                        </div>
+
+                        <!-- Result Action Buttons -->
+                        <div class="result-actions-row">
+                            <button class="btn btn-primary btn-lg" id="viewSolutionsBtn">
+                                <i class="fa-solid fa-book-open-reader"></i> Review All Solutions
+                            </button>
+                            <button class="btn btn-outline btn-lg" id="retakeQuizBtn">
+                                <i class="fa-solid fa-arrows-rotate"></i> Retake New Questions
+                            </button>
+                            <button class="btn btn-ghost btn-lg" id="backToHomeBtn">
+                                <i class="fa-solid fa-house"></i> Home Domains
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SCREEN 4: DETAILED SOLUTIONS REVIEW SCREEN ================= -->
+            <section class="screen-view" id="reviewScreen">
+                <div class="review-container">
+                    <div class="review-header-bar">
+                        <div>
+                            <h2><i class="fa-solid fa-file-lines"></i> Detailed Solutions & Explanations</h2>
+                            <p>Step-by-step reasoning and formulas for every question</p>
+                        </div>
+                        <div class="review-filters">
+                            <button class="review-filter-btn active" data-filter="all">All (<span id="reviewCountAll">0</span>)</button>
+                            <button class="review-filter-btn filter-incorrect" data-filter="incorrect">Incorrect (<span id="reviewCountWrong">0</span>)</button>
+                            <button class="review-filter-btn filter-correct" data-filter="correct">Correct (<span id="reviewCountCorrect">0</span>)</button>
+                            <button class="btn btn-outline btn-sm" id="backToResultBtn">
+                                <i class="fa-solid fa-arrow-left"></i> Back to Result
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="review-cards-list" id="reviewCardsList">
+                        <!-- Dynamically populated review cards -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Collapsible Question Matrix Palette Drawer (Global Fixed Drawer) -->
+        <div class="palette-drawer" id="paletteDrawer">
+            <div class="palette-drawer-header">
+                <h3><i class="fa-solid fa-table-cells"></i> Question Palette</h3>
+                <button class="icon-btn" id="closePaletteBtn" aria-label="Close Palette"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="palette-legend">
+                <div class="legend-item"><span class="leg-dot answered"></span> Answered</div>
+                <div class="legend-item"><span class="leg-dot marked"></span> Marked</div>
+                <div class="legend-item"><span class="leg-dot unvisited"></span> Unvisited</div>
+            </div>
+            <div class="palette-grid" id="paletteGrid">
+                <!-- Dynamic question jump pills -->
+            </div>
+        </div>
+        <div class="palette-overlay" id="paletteOverlay"></div>
+
+        <!-- ================= APP FOOTER ================= -->
+        <footer class="app-footer">
+            <div class="footer-container-clean">
+                <p class="footer-text">
+                    Designed and Maintained by 
+                    <a href="https://sachinkr2007.github.io/" target="_blank" rel="noopener noreferrer" class="portfolio-link-clean" id="sachinPortfolioLink" title="Visit Sachin Kumar's Portfolio">
+                        <strong>Sachin Kumar</strong>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </p>
+                <p class="footer-tagline">Empowering final year students to crack campus placements & technical interviews.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
