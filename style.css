@@ -1448,7 +1448,7 @@ code, pre {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .footer-text {
@@ -1457,30 +1457,18 @@ code, pre {
   color: var(--text-secondary);
 }
 
-.portfolio-link-clean {
+.portfolio-link-simple {
   color: var(--primary);
   text-decoration: none;
   font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.2rem 0.6rem;
-  margin-left: 0.35rem;
-  background: rgba(99, 102, 241, 0.12);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--primary-glow);
-  transition: all var(--transition-fast);
+  margin-left: 0.2rem;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  border-bottom: 1.5px solid transparent;
 }
 
-.portfolio-link-clean:hover {
-  background: var(--primary);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px var(--primary-glow);
-}
-
-.portfolio-link-clean i {
-  font-size: 0.78rem;
+.portfolio-link-simple:hover {
+  color: var(--secondary);
+  border-bottom-color: var(--secondary);
 }
 
 .footer-tagline {

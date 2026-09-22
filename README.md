@@ -53,9 +53,9 @@
 
 ## 👨‍💻 Author & Maintainer
 
-Designed and Maintained by **[Sachin Kumar](https://sachinkr2007.github.io/)**
+Designed and Maintained by **[Sachin Kumar](https://sachin-web-portfolio.netlify.app/)**
+- Portfolio: [sachin-web-portfolio.netlify.app](https://sachin-web-portfolio.netlify.app/)
 - GitHub: [@sachinkr2007](https://github.com/sachinkr2007)
-- Portfolio: [sachinkr2007.github.io](https://sachinkr2007.github.io/)
 
 ---
 
